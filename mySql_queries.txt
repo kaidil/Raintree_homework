@@ -1,0 +1,42 @@
+CREATE DATABASE mydb;
+
+USE mydb;
+
+CREATE TABLE patient(
+_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+pn VARCHAR(11) DEFAULT NULL,
+first VARCHAR(15) DEFAULT NULL,
+last VARCHAR(25) DEFAULT NULL,
+dob DATE DEFAULT NULL,
+PRIMARY KEY (_id)
+);
+
+CREATE TABLE insurance(
+_id INT(10) UNSIGNED NOT NULL AUTO_INCREMENT,
+patient_id INT(10) UNSIGNED NOT NULL,
+iname VARCHAR(40) DEFAULT NULL,
+from_date DATE DEFAULT NULL,
+to_date DATE DEFAULT NULL,
+PRIMARY KEY(_id),
+FOREIGN KEY(patient_id) REFERENCES patient(_id)
+);
+
+INSERT INTO patient (pn, first, last, dob) VALUES
+('pn-1', 'Jaan','Kask', '2023/04/15'),
+('pn-2', 'Meelis','Mänd', '2023/04/15'),
+('pn-3', 'Peep','Kuusk', '2023/04/15'),
+('pn-4', 'Andres','Pappel', '2023/04/15'),
+('pn-5', 'Tiina','Vaher', '2023/04/15');
+
+INSERT INTO insurance (patient_id, iname, from_date, to_date) VALUES 
+(1, 'Salva', '2017/06/15', '2024/06/15'),
+(1, 'IIZI', '2015/06/15', '2017/06/15'),
+(2, 'Salva', '2019/01/01', '2024/01/01'),
+(2, 'If', '2011/06/15', '2012/06/15'),
+(3, 'PZU Kindlustus', '2017/06/15', '2017/06/25'),
+(3, 'If', '2022/06/15', '2023/08/15'),
+(4, 'Salva', '2016/06/15', '2017/06/15'),
+(4, 'Salva', '2021/11/01', '2022/11/01'),
+(5, 'Seesam', '2009/06/15', '2010/06/15'),
+(5, 'Salva', '2011/06/15', '2012/06/15');
+
